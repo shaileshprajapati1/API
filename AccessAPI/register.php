@@ -30,7 +30,7 @@
     <div class="container mt-3 p-3 mb-2 bg-success text-white ">
         <h2 class="text-center"><b>Register Form</b></h2>
 
-        <form method="post" id="formdata" onclick="return formdata(this)" enctype="multipart/form-data">
+        <form method="post" id="formsubmit" onsubmit="return formdata(this)" enctype="multipart/form-data">
             <div class="row mb-3">
                 <div class="col-6 offset-3">
                     <label for="fullname">Fullname</label>
@@ -95,8 +95,35 @@
 
     </div>
     <script>
-        function formdta() {
-           console.log(this);
+        function formdata() {
+            event.preventDefault()
+            var result = {};
+            $.each($('#formsubmit').serializeArray(), function() {
+                result[this.name] = this.value;
+                // console.log(result);
+            });
+            var Hobbytostring = '';
+            $('input[type=checkbox]').each(function() {
+                if (this.checked) {
+                    Hobbytostring += this.value + ",";
+                }
+            });
+            Hobbytostring = Hobbytostring.substring(0, Hobbytostring.length - 1);
+            result['hobby'] = Hobbytostring;
+            // console.log(Hobbytostring);
+            delete result['hobby[]'];
+            // console.log(result);
+            fetch("http://localhost/api/API1/API/register", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(result)
+            }).then((res) => res.json()).then((result) => {
+                console.log(result)
+            })
+
         }
     </script>
 
