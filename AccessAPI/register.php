@@ -23,14 +23,14 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="container mt-3 p-3 mb-2 bg-success text-white ">
         <h2 class="text-center"><b>Register Form</b></h2>
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" id="formdata" onclick="return formdata(this)" enctype="multipart/form-data">
             <div class="row mb-3">
                 <div class="col-6 offset-3">
                     <label for="fullname">Fullname</label>
@@ -85,16 +85,20 @@
             </div>
             <div class="row mb-3">
                 <div class="col-6 offset-5">
-                <input type="submit" class="btn btn-secondary" name="register" id="register">                   
-                <input type="reset" class="btn btn-danger" >                   
-            </div>
+                    <input type="submit" class="btn btn-secondary" name="register" id="register">
+                    <input type="reset" class="btn btn-danger">
+                </div>
             </div>
 
 
         </form>
 
     </div>
-
+    <script>
+        function formdta() {
+           console.log(this);
+        }
+    </script>
 
 
 
