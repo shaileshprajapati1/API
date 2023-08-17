@@ -80,9 +80,36 @@
             <div class="row mb-3">
                 <div class="col-6 offset-3">
                     <label for="profile_pic">Profile Pic</label>
-                    <input type="file" name="profile_pic" class="form-control" id="profile_pic">
+                    <input type="file" accept="image/*" class="form-control" id="profilepic">
+                    <img width="100px" id="img">
+                    <input type="hidden" name="profile_pic" id="profile_pic">
+
+
+                    <script>
+                        document.getElementById("profilepic").addEventListener("change", function() {
+                            var input = document.querySelector('input[type="file"]')
+                            var url = URL.createObjectURL(input.files[0]);
+                            img.src = url;
+                            var data = new FormData()
+                            data.append('profile_pic', input.files[0])
+
+                            fetch('http://localhost/api/API1/API/uploadimage', {
+                                    method: 'POST',
+                                    body: data
+                                }).then((res) => res.json())
+                                .then((response) => {
+                                    console.log(response);
+                                    
+                                    document.getElementById("profile_pic").value = response
+                                })
+
+                        })
+                    </script>
+
                 </div>
+
             </div>
+
             <div class="row mb-3">
                 <div class="col-6 offset-5">
                     <input type="submit" class="btn btn-secondary" name="register" id="register">
@@ -120,8 +147,10 @@
                 },
                 method: "POST",
                 body: JSON.stringify(result)
+
             }).then((res) => res.json()).then((result) => {
                 console.log(result)
+
             })
 
         }

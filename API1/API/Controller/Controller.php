@@ -17,8 +17,10 @@ class Controller extends Model
                     
                     // echo json_encode($InsertRes);
                     break;
-                case '/login':
-                    echo "Login";
+                case '/uploadimage':
+                    $filename = $_FILES['profile_pic']['name'];
+                    move_uploaded_file($_FILES['profile_pic']['tmp_name'],"Uploads/".$filename);
+                    echo json_encode($filename);
                     break;
 
                 default:

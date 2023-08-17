@@ -30,34 +30,38 @@
     <div class="container mt-5 p-5 mb-5 bg-success text-white ">
         <h2 class="text-center"><b>Login Form</b></h2>
 
-        <form method="post"   enctype="multipart/form-data">
-            
+        <form method="post" enctype="multipart/form-data">
+
             <div class="row mb-3">
                 <div class="col-6 offset-3">
                     <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" >
+                    <input type="text" name="username" class="form-control" id="username">
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-6 offset-3">
                     <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" >
+                    <input type="password" name="password" class="form-control" id="password">
                 </div>
             </div>
-           
+
             <div class="row mb-3">
                 <div class="col-6 offset-5">
                     <input type="submit" class="btn btn-secondary" value="Login" name="login" id="login">
-                   
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 offset-4">
+
+                    <a href="register.php">CLick Here To Register</a>
                 </div>
             </div>
 
-
         </form>
-
     </div>
     <script>
-     
+
     </script>
 
 
