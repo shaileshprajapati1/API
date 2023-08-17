@@ -10,7 +10,7 @@
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> -->
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -61,14 +61,27 @@
         </form>
     </div>
     <script>
-        document.getElementById("loginform").addEventListener("click", function(event) {
+        document.getElementById("loginform").addEventListener("click", function() {
             event.preventDefault()
-           
+            const form = {
+                username: document.getElementById("username"),
+                password: document.getElementById("password")
+            };
+                console.log(form.username.value);
+            // fetch("http://localhost/api/API1/API/login", {
+            //     method: "POST",
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         username: form.username.value,
+            //         password: form.password.value,
+            //     }),
 
-            fetch("http://localhost/api/API1/API/login").then((res) => res.json()).then((result) => {
-                console.log(result);
-
-            })
+            // }).then((res) => res.json()).then((result) => {
+            //     console.log(result);
+            //     // document.getElementById("login").value = result
+            // })
 
         })
     </script>

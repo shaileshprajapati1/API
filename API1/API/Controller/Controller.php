@@ -23,8 +23,7 @@ class Controller extends Model
                     echo json_encode($filename);
                     break;
                 case '/login':
-                   
-                    $LoginRes = $this->Login($_REQUEST['username'],$_REQUEST['password']);
+                   $LoginRes = $this->Select("register",array("username"=>$_REQUEST['username'],"password"=>$_REQUEST['password']));
                    echo json_encode($LoginRes);
                     break;
 
