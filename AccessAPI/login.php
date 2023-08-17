@@ -30,7 +30,7 @@
     <div class="container mt-5 p-5 mb-5 bg-success text-white ">
         <h2 class="text-center"><b>Login Form</b></h2>
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" id="loginform" enctype="multipart/form-data">
 
             <div class="row mb-3">
                 <div class="col-6 offset-3">
@@ -61,7 +61,16 @@
         </form>
     </div>
     <script>
+        document.getElementById("loginform").addEventListener("click", function(event) {
+            event.preventDefault()
+           
 
+            fetch("http://localhost/api/API1/API/login").then((res) => res.json()).then((result) => {
+                console.log(result);
+
+            })
+
+        })
     </script>
 
 

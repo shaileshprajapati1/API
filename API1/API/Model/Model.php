@@ -29,6 +29,52 @@ function Insert($tbl,$data){
     return $ResonceData;
 
 }
+function Login($uname,$pass){
+    $SQL = " SELCET * FROM register where password='$pass' AND username = '$uname'";
+    // echo $SQL;
+    $SQLEx = $this->connection->query($SQL);
+    
+    if($SQLEx->num_rows > 0){
+        while ($data = $SQLEx->fetch_object()) {
+            $FetchData[]=$data;
+        }
+        $ResonceData['Code'] = "1";
+        $ResonceData['Msg'] = "Success";
+        $ResonceData['Data'] = $FetchData;
+    } else {
+        $ResonceData['Code'] = "0";
+        $ResonceData['Msg'] = "Try Again";
+        $ResonceData['Data'] = "0";
+    }
+    return $ResonceData;
+
+}
+function Select($tbl,$where = null){
+    $SQL = " SELCET * FROM $tbl";
+    if($where != ""){
+        $SQL.= " WHERE";
+        foreach ($where as $key => $value) {
+           $SQL.= " $key ='$value'AND";
+        }
+        $SQL =rtrim($SQL,"AND");
+    }
+    $SQLEx = $this->connection->query($SQL);
+    
+    if($SQLEx->num_rows > 0){
+        while ($data = $SQLEx->fetch_object()) {
+            $FetchData[]=$data;
+        }
+        $ResonceData['Code'] = "1";
+        $ResonceData['Msg'] = "Success";
+        $ResonceData['Data'] = $FetchData;
+    } else {
+        $ResonceData['Code'] = "0";
+        $ResonceData['Msg'] = "Try Again";
+        $ResonceData['Data'] = "0";
+    }
+    return $ResonceData;
+
+}
 
 
 }

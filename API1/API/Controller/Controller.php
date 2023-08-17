@@ -22,6 +22,11 @@ class Controller extends Model
                     move_uploaded_file($_FILES['profile_pic']['tmp_name'],"Uploads/".$filename);
                     echo json_encode($filename);
                     break;
+                case '/login':
+                   
+                    $LoginRes = $this->Login($_REQUEST['username'],$_REQUEST['password']);
+                   echo json_encode($LoginRes);
+                    break;
 
                 default:
                     # code...
