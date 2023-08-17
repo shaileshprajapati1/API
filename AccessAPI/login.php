@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Form</title>
+    <title>Login Form</title>
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -27,66 +27,28 @@
 </head>
 
 <body>
-    <div class="container mt-3 p-3 mb-2 bg-success text-white ">
-        <h2 class="text-center"><b>Register Form</b></h2>
+    <div class="container mt-5 p-5 mb-5 bg-success text-white ">
+        <h2 class="text-center"><b>Login Form</b></h2>
 
-        <form method="post" id="formsubmit" onsubmit="return formdata(this)" enctype="multipart/form-data">
-            <div class="row mb-3">
-                <div class="col-6 offset-3">
-                    <label for="fullname">Fullname</label>
-                    <input type="text" name="fullname" class="form-control" id="fullname" required>
-                </div>
-            </div>
+        <form method="post"   enctype="multipart/form-data">
+            
             <div class="row mb-3">
                 <div class="col-6 offset-3">
                     <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" required>
+                    <input type="text" name="username" class="form-control" id="username" >
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-6 offset-3">
                     <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" required>
+                    <input type="password" name="password" class="form-control" id="password" >
                 </div>
             </div>
-            <div class="row mb-3">
-                <div class="col-6 offset-3">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" required>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 offset-3">
-                    <label for="phone">Phone</label>
-                    <input type="tel" name="phone" class="form-control" id="phone" minlength="10" maxlength="10" required>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 offset-3" class="form-check">
-                    <label for="gender">Gender</label><br>
-                    <input type="radio" name="gender" class="form-check-input" id="Male" value="Male"><label class="form-check-label" for="Male">Male</label>
-                    <input type="radio" name="gender" class="form-check-input" id="Female" value="Female"><label class="form-check-label" for="Female">Female</label>
-                    <input type="radio" name="gender" class="form-check-input" id="Other" value="Other"><label class="form-check-label" for="Other">Other</label>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 offset-3" class="form-check">
-                    <label for="hobby">Hobby</label><br>
-                    <input type="checkbox" name="hobby[]" class="form-check-input" id="crickect" value="crickect"><label class="form-check-label" for="crickect">crickect</label>
-                    <input type="checkbox" name="hobby[]" class="form-check-input" id="reading" value="reading"><label class="form-check-label" for="reading">reading</label>
-                    <input type="checkbox" name="hobby[]" class="form-check-input" id="music" value="music"><label class="form-check-label" for="music">music</label>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-6 offset-3">
-                    <label for="profile_pic">Profile Pic</label>
-                    <input type="file" name="profile_pic" class="form-control" id="profile_pic">
-                </div>
-            </div>
+           
             <div class="row mb-3">
                 <div class="col-6 offset-5">
-                    <input type="submit" class="btn btn-secondary" name="register" id="register">
-                    <input type="reset" class="btn btn-danger">
+                    <input type="submit" class="btn btn-secondary" value="Login" name="login" id="login">
+                   
                 </div>
             </div>
 
@@ -95,36 +57,7 @@
 
     </div>
     <script>
-        function formdata() {
-            event.preventDefault()
-            var result = {};
-            $.each($('#formsubmit').serializeArray(), function() {
-                result[this.name] = this.value;
-                // console.log(result);
-            });
-            var Hobbytostring = '';
-            $('input[type=checkbox]').each(function() {
-                if (this.checked) {
-                    Hobbytostring += this.value + ",";
-                }
-            });
-            Hobbytostring = Hobbytostring.substring(0, Hobbytostring.length - 1);
-            result['hobby'] = Hobbytostring;
-            // console.log(Hobbytostring);
-            delete result['hobby[]'];
-            // console.log(result);
-            fetch("http://localhost/api/API1/API/register", {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: "POST",
-                body: JSON.stringify(result)
-            }).then((res) => res.json()).then((result) => {
-                console.log(result)
-            })
-
-        }
+     
     </script>
 
 
