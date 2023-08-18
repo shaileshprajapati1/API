@@ -15,7 +15,7 @@ function Insert($tbl,$data){
     $clm = implode(",",array_keys($data));
     $val = implode("','",$data);
     $SQL = " INSERT INTO $tbl ($clm) VALUE ('$val')";
-    echo $SQL;
+    // echo $SQL;
     $SQLEx = $this->connection->query($SQL);
     if($SQLEx > 0){
         $ResonceData['Code'] = "1";
@@ -50,7 +50,7 @@ function Login($uname,$pass){
 
 }
 function Select($tbl,$where = null){
-    $SQL = " SELCET * FROM $tbl";
+    $SQL = " SELECT * FROM $tbl ";
     if($where != ""){
         $SQL.= " WHERE";
         foreach ($where as $key => $value) {
@@ -58,6 +58,7 @@ function Select($tbl,$where = null){
         }
         $SQL =rtrim($SQL,"AND");
     }
+    // echo $SQL;
     $SQLEx = $this->connection->query($SQL);
     
     if($SQLEx->num_rows > 0){

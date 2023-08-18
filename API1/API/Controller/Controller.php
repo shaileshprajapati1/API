@@ -12,7 +12,7 @@ class Controller extends Model
             switch ($_SERVER['PATH_INFO']) {
                 case '/register':
                     $Data = json_decode(file_get_contents('php://input'), TRUE);
-                    // print_r($Data);
+                    print_r($Data);
                     $InsertRes = $this->Insert("register", $Data);
                     
                     // echo json_encode($InsertRes);
@@ -22,9 +22,19 @@ class Controller extends Model
                     move_uploaded_file($_FILES['profile_pic']['tmp_name'],"Uploads/".$filename);
                     echo json_encode($filename);
                     break;
-                case '/login':
-                   $LoginRes = $this->Select("register",array("username"=>$_REQUEST['username'],"password"=>$_REQUEST['password']));
-                   echo json_encode($LoginRes);
+                case '/viewalldatabyid':
+                  $ViewData = $this->Select("register");
+                //   echo "<pre>";
+                //   print_r( $ViewData);
+                //   echo "</pre>";
+                  echo json_encode($ViewData);
+                    break;
+                case '/selectdatabyid':
+                  $SelectData = $this->Select("register",array("id"=>$_REQUEST["id"]));
+                //   echo "<pre>";
+                //   print_r( $SelectData);
+                //   echo "</pre>";
+                  echo json_encode($SelectData);
                     break;
 
                 default:
