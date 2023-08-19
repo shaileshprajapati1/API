@@ -16,19 +16,19 @@
 
             <tr>
                 <td> <label for="fullname">Fullname</label><br><input type="text" name="fullname" id="fullname" required><br></td>
-                <td> <label for="username">Username</label><br><input type="text" name="username" id="username"required><br></td>
-                <td> <label for="password">Password</label><br><input type="password" name="password" id="password"required><br></td>
-                <td> <label for="email">Email</label><br><input type="email" name="email" id="email"required><br></td>
+                <td> <label for="username">Username</label><br><input type="text" name="username" id="username" required><br></td>
+                <td> <label for="password">Password</label><br><input type="password" name="password" id="password" required><br></td>
+                <td> <label for="email">Email</label><br><input type="email" name="email" id="email" required><br></td>
             </tr>
             <tr>
-                <td> <label for="phone">phone</label><br><input type="tel" minlength="10" maxlength="10" name="phone" id="phone"required><br></td>
+                <td> <label for="phone">phone</label><br><input type="tel" minlength="10" maxlength="10" name="phone" id="phone" required><br></td>
                 <td>
-                    <label for="gender">Gender</label><br>
+                    <label for="gender" id="checkButton">Gender</label><br>
                     <input type="radio" name="gender" id="Male" value="Male"><label for="Male">Male</label>
                     <input type="radio" name="gender" id="Female" value="Female"><label for="Female">Female</label><br>
                 </td>
                 <td>
-                    <label for="hobby">Hobby</label><br>
+                    <label for="hobby" id="hobbys">Hobby</label><br>
                     <input type="checkbox" name="hobby[]" id="reading" value="reading"><label for="reading">Reading</label>
                     <input type="checkbox" name="hobby[]" id="music" value="music"><label for="music">Music</label>
                     <input type="checkbox" name="hobby[]" id="cricket" value="cricket"><label for="cricket">Cricket</label><br>
@@ -36,7 +36,7 @@
             </tr>
             <tr class="text-center">
 
-                <td colspan="4"> <input type="submit" class="btn btn-success" name="add" id="add"><br></td>
+                <td colspan="4" id="update"> <input type="submit" class="btn btn-success" name="add" id="add"><br></td>
             </tr>
 
 
@@ -57,7 +57,7 @@
 
 
         </thead>
-        <tbody  id="viewdata">
+        <tbody id="viewdata">
 
         </tbody>
     </table>
@@ -116,11 +116,34 @@
             })
         }
         viewalldata()
-        function selectdatabyid(id){
+
+        function selectdatabyid(id) {
             // console.log("update:",id);
-            fetch("http://localhost/api/API1/API/selectdatabyid?id="+id).then((res)=>res.json()).then((responce)=>{
+            fetch("http://localhost/api/API1/API/selectdatabyid?id=" + id).then((res) => res.json()).then((responce) => {
                 console.log(responce.Data[0]);
-                
+                let radiotype = responce.Data[0].gender;
+                // console.log(radiotype);
+                document.getElementById("fullname").value = responce.Data[0].fullname
+                document.getElementById("username").value = responce.Data[0].username
+                document.getElementById("password").value = responce.Data[0].password
+                document.getElementById("email").value = responce.Data[0].email
+                document.getElementById("phone").value = responce.Data[0].phone
+                $("input[name=gender][value=" + radiotype + "]").prop('checked', true);
+                $("input[name=gender][value=" + radiotype + "]").prop('checked', true);
+
+
+                // console.log(gender.value);
+                // console.log(document.getElementsByName("gender").value = responce.Data[0].gender)
+
+                // console.log(document.getElementsByName("hobby").value = responce.Data[0].hobby)
+
+
+
+
+
+
+
+                document.getElementById("update").innerHTML = `<input type="submit" value="update" onclick=update('+responce.Data[0].id+') class="btn btn-success" name="add" id="add">`
             })
 
         }
