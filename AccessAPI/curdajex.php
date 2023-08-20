@@ -123,16 +123,15 @@
                 console.log(responce.Data[0]);
                 let radiotype = responce.Data[0].gender;
                 let hobby = responce.Data[0].hobby;
-                // console.log(hobby);
+                console.log(hobby);
                 document.getElementById("fullname").value = responce.Data[0].fullname
                 document.getElementById("username").value = responce.Data[0].username
                 document.getElementById("password").value = responce.Data[0].password
                 document.getElementById("email").value = responce.Data[0].email
                 document.getElementById("phone").value = responce.Data[0].phone
                 $("input[name=gender][value=" + radiotype + "]").prop('checked', true);
-
-              
-                // $("input[type=checkbox][value=" + HobbyArray + "]").push('checked', true);
+                var Stringtoarray = responce.Data[0].hobby.split(',');
+                $("input[type=checkbox][value=" + Stringtoarray + "]").push('selected', true);
 
 
 
