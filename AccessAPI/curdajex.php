@@ -123,34 +123,77 @@
                 console.log(responce.Data[0]);
                 let radiotype = responce.Data[0].gender;
                 let hobby = responce.Data[0].hobby;
-                console.log(hobby);
+                // console.log(hobby);
                 document.getElementById("fullname").value = responce.Data[0].fullname
                 document.getElementById("username").value = responce.Data[0].username
                 document.getElementById("password").value = responce.Data[0].password
                 document.getElementById("email").value = responce.Data[0].email
                 document.getElementById("phone").value = responce.Data[0].phone
                 $("input[name=gender][value=" + radiotype + "]").prop('checked', true);
-                var Stringtoarray = responce.Data[0].hobby.split(',');
-                $("input[type=checkbox][value=" + Stringtoarray + "]").push('selected', true);
+                // var Stringtoarray = responce.Data[0].hobby.split(',');
+                let array = hobby.split(',');
+
+                // console.log(array);
 
 
-
+                $("input[type=checkbox][value=" + array[0] + "]").prop('checked', true);
+                $("input[type=checkbox][value=" + array[1] + "]").prop('checked', true);
+                $("input[type=checkbox][value=" + array[2] + "]").prop('checked', true);
 
                 // console.log(gender.value);
                 // console.log(document.getElementsByName("gender").value = responce.Data[0].gender)
 
                 // console.log(document.getElementsByName("hobby").value = responce.Data[0].hobby)
 
+                document.getElementById("update").innerHTML = '<input type="submit" value="update" onclick=update(' + responce.Data[0].id + ') class="btn btn-success" name="add" id="add">'
+            })
+
+
+        }
+
+        function update(id) {
+            // console.log("updateid=", id);
+            document.getElementById("add").addEventListener("click", function() {
+                // event.preventDefault()
+                var result = {};
+                $.each($('#formdata').serializeArray(), function() {
+                    result[this.name] = this.value;
+                });
+                var HobbyStr = '';
+
+                $('input[type=checkbox]').each(function() {
+                    if (this.checked) {
+                        HobbyStr += this.value + ",";
+                    }
+                });
+                HobbyStr = HobbyStr.substring(0, HobbyStr.length - 1);
+                result["hobby"] = HobbyStr;
+                delete result["hobby[]"];
+                console.log(result);
+                fetch('http://localhost/api/API1/API/updatebyid?id=' + id, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify(result)
+                }).then((res) => res.json()).then((result) => {
+                    viewalldata()
+                })
 
 
 
-
-
-
-                document.getElementById("update").innerHTML = `<input type="submit" value="update" onclick=update('+responce.Data[0].id+') class="btn btn-success" name="add" id="add">`
             })
 
         }
+
+        function deletedatabyid(id) {
+            console.log("delete id",id);
+           fetch('http://localhost/api/API1/API/deletedataid?id=' +id).then((res) => res.json()).then((result) =>{
+            viewalldata();
+           })
+        }
+        
     </script>
 </body>
 

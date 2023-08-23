@@ -61,27 +61,12 @@
         </form>
     </div>
     <script>
-        document.getElementById("loginform").addEventListener("click", function() {
+        document.getElementById("login").addEventListener("click", function() {
             event.preventDefault()
-            const form = {
-                username: document.getElementById("username"),
-                password: document.getElementById("password")
-            };
-                console.log(form.username.value);
-            // fetch("http://localhost/api/API1/API/login", {
-            //     method: "POST",
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({
-            //         username: form.username.value,
-            //         password: form.password.value,
-            //     }),
-
-            // }).then((res) => res.json()).then((result) => {
-            //     console.log(result);
-            //     // document.getElementById("login").value = result
-            // })
+            fetch("http://localhost/api/API1/API/login").then((res) => res.json()).then((result) => {
+                console.log(result);
+                document.getElementById("login").value = result
+            })
 
         })
     </script>
