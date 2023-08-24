@@ -188,12 +188,14 @@
         }
 
         function deletedatabyid(id) {
-            console.log("delete id",id);
-           fetch('http://localhost/api/API1/API/deletedataid?id=' +id).then((res) => res.json()).then((result) =>{
-            viewalldata();
-           })
+            console.log("delete id", id);
+            if (confirm("Are You Sure??")) {
+                fetch('http://localhost/api/API1/API/deletedataid?id=' + id).then((res) => res.json()).then((result) => {
+                    viewalldata();
+                })
+
+            }
         }
-        
     </script>
 </body>
 
